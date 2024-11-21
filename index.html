@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المنتج</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 100%;
+            margin: auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .header img {
+            max-width: 100px;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .video {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .video iframe {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product-info {
+            margin: 10px 0;
+            text-align: center;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-info h1 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #007bff;
+        }
+
+        .product-info p {
+            margin: 10px 0;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .product-images img {
+            width: 90%;
+            max-width: 300px;
+            margin: 5px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-images img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .order-quantity {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px auto;
+            max-width: 300px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-quantity .label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #007bff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .order-quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Adds space between elements */
+        }
+
+        .order-quantity button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .order-quantity button:hover {
+            background-color: #0056b3;
+        }
+
+        .order-quantity input {
+            width: 60px;
+            text-align: center;
+            font-size: 1.2em;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .payment-method {
+            background-color: #e0f7fa;
+            padding: 15px;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 1.2em;
+            color: #00796b;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+        }
+
+        .price-box {
+            background-color: #ffeb3b;
+            padding: 20px;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+        }
+
+        .order-button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            margin: 10px auto;
+            text-align: center;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .order-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        .form-section {
+            background-color: #fff;
+            padding: 15px;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        input, select, button {
+            padding: 8px;
+            margin: 8px 0;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="https://i.suar.me/aMled/l" alt="Logo">
+            <h1>Mini Shop</h1>
+        </div>
+
+        <!-- YouTube Video -->
+        <div class="video">
+            <iframe src="https://www.youtube.com/embed/ud83VnrzgNM" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+            <h1>ميزان مطبخ رقمي محمول</h1>
+           <h1>مواصفات المنتج</h1>
+           <p> النوع: أدوات قياس (ملاعق قياس) </p>           
+           <p> الخصائص: صديقة للبيئة، قابلة للتخزين</p>                     
+           <p> الشهادة: CIQ </p>           
+           <p> ملعقة قياس بشاشة </p>
+           <p> المواد: الفولاذ المقاوم للصدأ + البلاستيك </p>          
+        </div>
+
+        <!-- Product Images -->
+        <div class="product-images">
+            <img src="https://i.suar.me/7GeKG/l" alt="صورة المنتج صغيرة 1">
+            <img src="https://i.suar.me/wAZQp/l" alt="صورة المنتج صغيرة 2">
+            <img src="https://i.suar.me/Vdxo9/l" alt="صورة المنتج صغيرة 3">
+            <img src="https://i.suar.me/gMj51/l" alt="صورة المنتج صغيرة 4">
+            <img src="https://i.suar.me/9POKx/l" alt="صورة المنتج صغيرة 5">                                    
+        </div>
+
+        <!-- Order Quantity -->
+        <div class="order-quantity">
+            <span class="label">كمية</span>
+            <div class="order-quantity-controls">
+                <button type="button" onclick="changeQuantity(-1)">-</button>
+                <input type="number" id="quantity" value="1" min="1" max="5" readonly>
+                <button type="button" onclick="changeQuantity(1)">+</button>
+            </div>
+        </div>
+
+        <input type="hidden" id="productName" name="productName" value="ميزان مطبخ رقمي محمول">
+
+        <input type="hidden" id="productQuantity" name="productQuantity" value="1">
+
+
+
+     <!-- Payment Method -->
+        <div class="payment-method">
+             ملاحظة/عند وصول المنتج يرجى تأكد من المنتج قبل الدفع، لي طلب المنتج إملأ المعلومات في أسفل و إضغط على طلب المنتج
+        </div>
+
+        <!-- Price Box -->
+        <div class="price-box">
+            السعر: 1,500 د.ج
+        </div>
+
+        <form id="orderForm">
+    <!-- الحقول الموجودة مسبقاً -->
+    <label for="fullName">الاسم الكامل:</label>
+    <input type="text" id="fullName" name="fullName" required><br>
+
+    <label for="phoneNumber">رقم الهاتف:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" required><br>
+
+    <label for="wilaya">الولاية:</label>
+    <select id="wilaya" name="wilaya" required>
+        <option value="">اختر الولاية</option>
+        <option value="01 ~ أدرار">أدرار</option>
+        <option value="02 ~ الشلف">الشلف</option>
+        <option value="03 ~ الأغواط">الأغواط</option>
+        <option value="04 ~ أم البواقي">أم البواقي</option>
+        <option value="05 ~ باتنة">باتنة</option>
+        <option value="06 ~ بجاية">بجاية</option>
+        <option value="07 ~ بسكرة">بسكرة</option>
+        <option value="08 ~ بشار">بشار</option>
+        <option value="09 ~ البليدة">البليدة</option>
+        <option value="10 ~ البويرة">البويرة</option>
+        <option value="11 ~ تمنراست">تمنراست</option>
+        <option value="12 ~ تبسة">تبسة</option>
+        <option value="13 ~ تلمسان">تلمسان</option>
+        <option value="14 ~ تيارت">تيارت</option>
+        <option value="15 ~ تيزي وزو">تيزي وزو</option>
+        <option value="16 ~ الجزائر">الجزائر</option>
+        <option value="17 ~ الجلفة">الجلفة</option>
+        <option value="18 ~ جيجل">جيجل</option>
+        <option value="19 ~ سطيف">سطيف</option>
+        <option value="20 ~ السعيدة">السعيدة</option>
+        <option value="21 ~ سكيكدة">سكيكدة</option>
+        <option value="22 ~ سيدي بلعباس">سيدي بلعباس</option>
+        <option value="23 ~ عنابة">عنابة</option>
+        <option value="24 ~ قالمة">قالمة</option>
+        <option value="25 ~ قسنطينة">قسنطينة</option>
+        <option value="26 ~ المدية">المدية</option>
+        <option value="27 ~ مستغانم">مستغانم</option> 
+        <option value="28 ~ المسيلة">المسيلة</option>
+        <option value="29 ~ معسكر">معسكر</option>
+        <option value="30 ~ ورقلة">ورقلة</option>
+        <option value="31 ~ وهران">وهران</option>
+        <option value="32 ~ البيض">البيض</option>
+        <option value="33 ~ إليزي">إليزي</option>
+        <option value="34 ~ برج بوعريريج">برج بوعريريج</option>
+        <option value="35 ~ بومرداس">بومرداس</option>
+        <option value="36 ~ الطارف">الطارف</option>
+        <option value="37 ~ تندوف">تندوف</option>
+        <option value="38 ~ تسيمسيلت">تسيمسيلت</option>
+        <option value="39 ~ الوادي(واد سوف)">الوادي(واد سوف)</option>
+        <option value="40 ~ خنشلة">خنشلة</option>
+        <option value="41 ~ سوق اهراس">سوق اهراس</option>
+        <option value="42 ~ تيبازة">تيبازة</option>
+        <option value="43 ~ ميلة">ميلة</option>
+        <option value="44 ~ عين الدفلى">عين الدفلى</option>
+        <option value="45 ~ النعامة">النعامة</option>
+        <option value="46 ~ عين تموشنت">عين تموشنت</option>
+        <option value="47 ~ غرداية">غرداية</option>
+        <option value="48 ~ غليزان">غليزان</option>
+        <option value="49 ~ تيميمون">تيميمون</option>
+        <option value="50 ~ برج باجي مختار">برج باجي مختار</option>
+        <option value="51 ~ أولاد جلال">أولاد جلال</option>
+        <option value="52 ~ بني عباس">بني عباس</option>
+        <option value="53 ~ عين صالح">عين صالح</option>
+        <option value="54 ~ عين قزام">عين قزام</option>
+        <option value="55 ~ توقرت">توقرت</option>
+        <option value="56 ~ جانت">جانت</option>
+        <option value="57 ~ المغير">المغير</option>
+        <option value="58 ~ المنيعة">المنيعة</option>
+
+
+    </select><br>
+    <label for="municipality">البلدية:</label>
+    <input type="text" id="municipality" name="municipality" placeholder="اكتب اسم البلدية هنا" required>
+  
+
+    
+
+    <!-- إضافة حقل اسم المنتج -->
+    <label for="productName">اسم المنتج:</label>
+    <input type="text" id="productName" name="productName" value="ميزان مطبخ رقمي محمول" readonly><br>
+
+    <!-- حقل الكمية (يجب أن يكون مرتبطًا بوظيفة التحكم بالكمية) -->
+    <label for="productQuantity">كمية المنتج:</label>
+    <input type="number" id="quantity" name="productQuantity" value="1" readonly><br>
+
+    <label for="delivery">نوع التوصيل:</label>
+    <select id="delivery" name="delivery" required>
+        <option value="home">توصيل للمنزل</option>
+        <option value="office">توصيل للمكتب</option>
+    </select><br>
+
+    <button type="submit" id="submitButton">طلب المنتج</button>
+</form>
+
+
+    <div class="footer">
+        حقوق الطبع والنشر © 2024 Mini Shop
+    </div>
+
+     <script>
+
+
+function changeQuantity(amount) {
+        const quantityInput = document.getElementById('quantity');
+        let currentQuantity = parseInt(quantityInput.value);
+
+        // زيادة أو تقليل الكمية حسب القيمة المقدمة
+        currentQuantity += amount;
+
+        // التأكد من أن الكمية لا تقل عن 1
+        if (currentQuantity < 1) {
+            currentQuantity = 1;
+        }
+
+        // تحديث قيمة حقل الكمية
+        quantityInput.value = currentQuantity;
+    }
+
+
+
+        const municipalities = {
+            "أدرار": ["أدرار", "تيميمون", "فنوغيل", "جانت", "برج الحواس", "برج باجي مختار", "تيمياوين", "تيدكلت", "العسلة"],
+        };
+
+        const wilayaSelect = document.getElementById('wilaya');
+        const municipalitySelect = document.getElementById('municipality');
+
+        wilayaSelect.addEventListener('change', function() {
+            const selectedWilaya = this.value;
+            municipalitySelect.innerHTML = '<option value="">اختر البلدية</option>';
+            if (municipalities[selectedWilaya]) {
+                municipalities[selectedWilaya].forEach(municipality => {
+                    const option = document.createElement('option');
+                    option.value = municipality;
+                    option.textContent = municipality;
+                    municipalitySelect.appendChild(option);
+                });
+            }
+        });
+
+     const scriptURL = 'https://script.google.com/macros/s/AKfycbwqDZcfKTnadivCyfWwRdStr2kJxTjMec8RzWE8QMnQQaNkByRaA7DC2lAzV6o6Bl4N/exec';
+const form = document.getElementById('orderForm');
+const submitButton = document.getElementById('submitButton');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    submitButton.disabled = true;
+    submitButton.textContent = 'جاري الإرسال...';
+
+    const formData = new FormData(form);
+
+    // التأكد من إرسال كمية المنتج مع البيانات
+    const quantity = document.getElementById('quantity').value;
+    formData.set('productQuantity', quantity);
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        submitButton.disabled = false;
+        submitButton.textContent = 'طلب المنتج';
+        alert('تم إرسال الطلب بنجاح!');
+        form.reset();
+    })
+    .catch(error => {
+        submitButton.disabled = false;
+        submitButton.textContent = 'طلب المنتج';
+        alert('حدث خطأ أثناء إرسال الطلب.');
+    });
+});
+
+    </script>
+ 
+
+<!-- زر رابط -->
+<a href="https://miinishop.github.io/Anakawe-jamal/" style="
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+" onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'">
+    رجوع
+</a>
+
+
+
+</body>
+</html>
